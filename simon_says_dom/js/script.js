@@ -5,6 +5,14 @@ Visualizzare in pagina 5 numeri casuali. */
 const numberEl = document.getElementById("numbers-list");
 const countdownEl = document.getElementById("countdown");
 const instructionEl = document.getElementById("instructions");
+const answersFormEl = document.getElementById("answers-form")
+const formControlEl = document.querySelector(".form-control")
+
+
+
+
+// select form elements
+
 
 // functions
 function getRandomInteger(min, max) {
@@ -38,12 +46,16 @@ const intervalId = setInterval(function(){
         numberEl.classList.add("d-none");
         countdownEl.innerText = "Tempo scaduto!"
         instructionEl.innerText = "Inserisci qui i numeri che hai visto precedentemente nell'ordine che preferisci:"
+        answersFormEl.classList.remove("d-none")
     }
-}, 500)
+}, 200)
 
 
 /* Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati. */
-
+answersFormEl.addEventListener("submit", function(e){
+    
+    
+})
 
 
 
