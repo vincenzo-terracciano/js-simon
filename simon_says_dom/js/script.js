@@ -2,7 +2,9 @@
 Visualizzare in pagina 5 numeri casuali. */
 
 // select DOM elements
-const numberEl = document.getElementById("numbers-list")
+const numberEl = document.getElementById("numbers-list");
+const countdownEl = document.getElementById("countdown");
+const instructionEl = document.getElementById("instructions");
 
 // functions
 function getRandomInteger(min, max) {
@@ -20,12 +22,25 @@ function getRandomInteger(min, max) {
   const numberWithoutComma = number.join(" ");
   numberEl.insertAdjacentHTML("afterbegin", `<li>${numberWithoutComma}</li>`)
 
-  
-
-
 /* Da lì parte un timer di 30 secondi. */
 
-/* Dopo 30 secondi i numeri scompaiono e appaiono invece 5 input in cui l'utente deve inserire i numeri che ha visto precedentemente, nell'ordine che preferisce. */
+// set variable to 30 seconds
+let timer = 30;
+
+// create a setInterval to start the countdown
+const intervalId = setInterval(function(){
+    timer--;
+    countdownEl.innerText = timer;
+    if(timer == 0) {
+        clearInterval(intervalId)
+
+        /* Dopo 30 secondi i numeri scompaiono e appaiono invece 5 input in cui l'utente deve inserire i numeri che ha visto precedentemente, nell'ordine che preferisce. */
+        numberEl.classList.add("d-none");
+        countdownEl.innerText = "Tempo scaduto!"
+        instructionEl.innerText = "Inserisci qui i numeri che hai visto precedentemente nell'ordine che preferisci:"
+    }
+}, 500)
+
 
 /* Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati. */
 
