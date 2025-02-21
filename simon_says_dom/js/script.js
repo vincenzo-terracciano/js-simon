@@ -7,9 +7,8 @@ const countdownEl = document.getElementById("countdown");
 const instructionEl = document.getElementById("instructions");
 const answersFormEl = document.getElementById("answers-form")
 const formControlEl = document.querySelector(".form-control")
-
-
-
+const inputEl = document.querySelectorAll("#input-group input")
+const messageEl = document.getElementById("message")
 
 // select form elements
 
@@ -21,7 +20,7 @@ function getRandomInteger(min, max) {
   
   // loop to generate 5 random numbers
   const number = [];
-  for(i = 0; i < 5; i++) {
+  for(let i = 0; i < 5; i++) {
     number.push(getRandomInteger(1, 50));
   }
   console.log(number);
@@ -52,7 +51,22 @@ const intervalId = setInterval(function(){
 
 
 /* Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati. */
+
+let userChoice = [];
+let rightNumbers = [];
+
 answersFormEl.addEventListener("submit", function(e){
+    e.preventDefault();
+    for(let i = 0; i < 5; i++){
+        let userInput = inputEl[i].value;
+        userChoice.push(Number(userInput));
+
+        if(userChoice.includes(number[i])){
+            rightNumbers.push(number[i]);
+        }
+    }
+
+    messageEl.innerText = `Congratulazioni, hai indovinato ${rightNumbers.length} numeri: ${rightNumbers}`
     
     
 })
